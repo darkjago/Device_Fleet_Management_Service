@@ -1,0 +1,77 @@
+// myservice.proto
+syntax = "proto3";
+
+package fleet;
+
+enum Status
+{
+  IDLE = 0;
+  BUSY = 1;
+  OFFLINE = 2;
+  MAINTENANCE = 3;
+  UPDATING = 4;
+}
+
+enum ActionState
+{
+  PENDING = 0;
+  RUNNING = 1;
+  COMPLETED = 2;
+  FAILED = 3;
+}
+
+message RegisterRequest
+{
+  string device_id = 1;
+  Status initial_status = 2;
+}
+
+message StatusRequest
+{
+  string device_id = 1;
+  Status status = 2;
+}
+
+message InfoRequest
+{
+  string device_id = 1;
+}
+
+message ActionRequest
+{
+  string device_id = 1;
+  string action_type = 2;
+  string version = 3;
+}
+
+message ActionResponse
+{
+  string action_id = 1;
+}
+
+message DeviceResponse
+{
+  string device_id = 1;
+  Status status = 2;
+  string message = 3;
+}
+
+message ActionStatusRequest
+{
+  string action_id = 1;
+}
+
+message ActionStatusResponse
+{
+  ActionState state = 1;
+}
+
+service DeviceManager
+{
+  rpc RegisterDevice(RegisterRequest) returns (DeviceResponse);
+  rpc SetDeviceStatus(StatusRequest) returns (DeviceResponse);
+  rpc GetDeviceInfo(InfoRequest) returns (DeviceResponse);
+  rpc InitiateDeviceAction(ActionRequest) returns (ActionResponse);
+  rpc GetActionStatus(ActionStatusRequest) returns (ActionStatusResponse);
+}
+
