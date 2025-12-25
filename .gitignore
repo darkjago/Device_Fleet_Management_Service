@@ -42,3 +42,8 @@
 Server/cmake
 Client/.venv/
 .vscode/
+Client/service_pb2_grpc.py
+Client/service_pb2.py
+Client/__pycache__/service_pb2_grpc.cpython-312.pyc
+Client/__pycache__/service_pb2.cpython-312.pyc
+Client/gen-py/service_pb2.py
