@@ -41,3 +41,4 @@
 *.dwo
 Server/cmake
 Client/.venv/
+.vscode/
