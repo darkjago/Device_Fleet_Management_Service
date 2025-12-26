@@ -1,4 +1,3 @@
-// myservice.proto
 syntax = "proto3";
 
 package fleet;
